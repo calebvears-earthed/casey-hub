@@ -1,0 +1,5 @@
+[
+  { "id": "USR-001", "name": "Casey Williams", "role": "fitter", "crew": "Fitting Crew Alpha", "shift": "day" },
+  { "id": "USR-002", "name": "Ryan Porteous", "role": "supervisor", "crew": "Site Ops", "shift": "day" },
+  { "id": "USR-003", "name": "Sam Chen", "role": "engineer", "crew": "Reliability Engineering", "shift": "day" }
+]

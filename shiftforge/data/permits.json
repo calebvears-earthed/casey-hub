@@ -1,0 +1,4 @@
+[
+  {"id": "PMT-101", "asset_id": "AST-002", "asset_code": "HYD-014", "type": "Isolation + Lock-Out", "status": "active", "opened": "2026-09-12 22:15", "opened_by": "Casey Williams"},
+  {"id": "PMT-100", "asset_id": "AST-005", "asset_code": "DRL-DM45-02", "type": "Full Isolation", "status": "active", "opened": "2026-09-12 09:40", "opened_by": "Ryan Porteous"}
+]
