@@ -8,7 +8,7 @@ const config: Config = {
         dark: "#1a1a1a",
         elevated: "#1e1e28",
         card: "#22222d",
-        red: { DEFAULT: "#E63946", hover: "#F04555" },
+        red: { DEFAULT: "#10B981", hover: "#34D399" },
         cream: "#F5F1E8",
         purple: "#513963",
         violet: "#7c3aed",
