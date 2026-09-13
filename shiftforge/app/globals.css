@@ -4,18 +4,83 @@
 
 @layer base {
   html { color-scheme: dark; }
-  body { @apply bg-charcoal text-cream font-sans antialiased; }
-  h1, h2, h3, h4 { @apply font-heading; }
+  body {
+    @apply bg-charcoal text-paper font-sans antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 85% -10%, rgba(208, 38, 31, 0.08), transparent 60%),
+      radial-gradient(1000px 500px at -10% 110%, rgba(81, 57, 99, 0.10), transparent 60%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  h1, h2, h3, h4 { @apply font-heading; letter-spacing: -0.02em; font-weight: 900; }
   .mono { font-family: 'JetBrains Mono', monospace; }
 }
 
 @layer components {
-  .card { @apply bg-elevated border border-white/5 rounded-xl p-5; }
-  .pill { @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium; }
-  .btn-primary { @apply bg-red hover:bg-red-hover text-cream font-semibold px-5 py-2.5 rounded-lg transition-colors; }
-  .btn-ghost { @apply border border-white/10 text-cream/80 hover:text-cream hover:border-white/20 px-4 py-2 rounded-lg transition-colors; }
-  .input { @apply w-full bg-charcoal border border-white/10 rounded-lg px-3 py-2 text-cream focus:border-red focus:outline-none transition-colors; }
-  .stat-green { @apply text-green-400; }
+  /* Cards — subtle top highlight, warm ink surface */
+  .card {
+    @apply bg-elevated border border-white/[0.06] rounded-xl p-5 relative overflow-hidden;
+  }
+  .card::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none;
+  }
+
+  /* Pills */
+  .pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-red hover:bg-red-hover text-paper font-extrabold uppercase text-xs px-6 py-3 rounded-lg transition-all;
+    letter-spacing: 0.22em;
+    box-shadow: 0 8px 20px -8px rgba(208, 38, 31, 0.5);
+  }
+  .btn-primary:hover { box-shadow: 0 10px 24px -6px rgba(208, 38, 31, 0.6); }
+  .btn-ghost {
+    @apply border border-white/10 text-paper/80 hover:text-paper hover:border-white/20 hover:bg-white/[0.03] font-bold uppercase text-xs px-5 py-2.5 rounded-lg transition-all;
+    letter-spacing: 0.18em;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full bg-charcoal/70 border border-white/10 rounded-lg px-3 py-2.5 text-paper placeholder:text-paper/30 focus:border-red focus:outline-none focus:ring-1 focus:ring-red/40 transition-all;
+  }
+
+  /* Stat colours */
+  .stat-green { @apply text-emerald-400; }
   .stat-amber { @apply text-amber-400; }
   .stat-red { @apply text-red; }
+
+  /* Brand primitives */
+  .wordmark {
+    @apply font-heading font-black text-paper;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .tagline {
+    @apply text-red font-extrabold uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.68rem;
+  }
+  .eyebrow {
+    @apply text-red font-extrabold uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.72rem;
+  }
+  .divider-red {
+    @apply w-8 h-0.5 bg-red rounded-full;
+  }
+
+  /* Stat numeral display */
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    @apply text-4xl font-bold text-paper tracking-tight;
+  }
+  .stat-label {
+    @apply text-[10px] font-extrabold text-paper/50 uppercase;
+    letter-spacing: 0.24em;
+  }
 }
