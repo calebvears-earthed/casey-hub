@@ -1,22 +1,21 @@
 import assets from "@/data/assets.json";
 import reports from "@/data/reports.json";
+import timeseries from "@/data/health_timeseries.json";
 import Link from "next/link";
-import HeroBanner from "@/components/HeroBanner";
+import MorningBrief from "@/components/MorningBrief";
+import Sparkline from "@/components/Sparkline";
+
+type Series = Record<string, number[]>;
 
 export default function Dashboard() {
   const openFaults = assets.reduce((sum, a) => sum + a.open_faults, 0);
   const critical = reports.filter((r) => r.priority === "critical").length;
   const underMaintenance = assets.filter((a) => a.status === "under_maintenance").length;
-  const avgHealth = Math.round((assets.reduce((s, a) => s + a.health_score, 0) / assets.length) * 100);
+  const series = timeseries as Series;
+
   return (
     <div className="max-w-7xl mx-auto space-y-6 lg:space-y-8">
-      <HeroBanner
-        eyebrow="Prominent Hill · Day Shift · 13 Sep 2026"
-        title="Site Ops Overview"
-        subtitle="Every haul, every rig, every substation — one operating picture. Real-time asset + shift intelligence flowing back to base."
-        rightStat={{ label: "Fleet Health", value: `${avgHealth}%`, sub: `${assets.length} assets tracked` }}
-        variant="pit"
-      />
+      <MorningBrief />
 
       {/* Stat row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
@@ -38,10 +37,10 @@ export default function Dashboard() {
           </div>
           <div className="space-y-4">
             {reports.slice(0, 5).map((r) => (
-              <div key={r.id} className="flex items-start gap-4 pb-4 border-b border-white/5 last:border-b-0 last:pb-0">
+              <Link key={r.id} href={`/reports/${r.id}`} className="flex items-start gap-4 pb-4 border-b border-white/5 last:border-b-0 last:pb-0 hover:bg-white/[0.02] -mx-2 px-2 rounded transition-colors">
                 <PriorityDot priority={r.priority} />
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1.5">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                     <span className="mono text-[11px] text-paper/60">{r.id}</span>
                     <span className="mono text-[11px] font-bold text-red">{r.asset_code}</span>
                     <span className="text-[11px] text-paper/40 uppercase" style={{ letterSpacing: "0.14em" }}>
@@ -50,33 +49,35 @@ export default function Dashboard() {
                   </div>
                   <div className="text-sm text-paper/85 line-clamp-2 leading-relaxed">{r.issues_identified}</div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
 
         <div className="card">
           <div className="mb-5">
-            <div className="eyebrow mb-1">Fleet</div>
+            <div className="eyebrow mb-1">Fleet · 30 Day Trend</div>
             <h2 className="text-xl sm:text-2xl">Equipment Health</h2>
           </div>
           <div className="space-y-4">
-            {assets.map((a) => (
-              <Link href={`/assets/${a.id}`} key={a.id} className="block group">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="mono text-[11px] font-bold text-paper/70 group-hover:text-red transition-colors">
-                    {a.asset_code}
-                  </span>
-                  <span className="mono text-[11px] text-paper/50">{Math.round(a.health_score * 100)}%</span>
-                </div>
-                <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                  <div
-                    className={`h-full ${a.health_score > 0.75 ? "bg-emerald-400" : a.health_score > 0.5 ? "bg-amber-400" : "bg-red"}`}
-                    style={{ width: `${a.health_score * 100}%` }}
-                  />
-                </div>
-              </Link>
-            ))}
+            {assets.map((a) => {
+              const data = series[a.id] || [];
+              const tone = a.health_score > 0.75 ? "#34D399" : a.health_score > 0.5 ? "#FBBF24" : "#D0261F";
+              const fill = a.health_score > 0.75 ? "rgba(52, 211, 153, 0.14)" : a.health_score > 0.5 ? "rgba(251, 191, 36, 0.14)" : "rgba(208, 38, 31, 0.16)";
+              return (
+                <Link href={`/assets/${a.id}`} key={a.id} className="block group">
+                  <div className="flex items-center justify-between gap-3 mb-1.5">
+                    <span className="mono text-[11px] font-bold text-paper/70 group-hover:text-red transition-colors truncate">
+                      {a.asset_code}
+                    </span>
+                    <div className="flex items-center gap-2 flex-none">
+                      <Sparkline data={data} width={70} height={20} stroke={tone} fill={fill} />
+                      <span className="mono text-[11px] text-paper/60 w-9 text-right">{Math.round(a.health_score * 100)}%</span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -88,7 +89,7 @@ function StatCard({ label, value, sub, tone }: { label: string; value: string; s
   const toneClass = tone === "green" ? "text-emerald-400" : tone === "amber" ? "text-amber-400" : "text-red";
   const stripe = tone === "green" ? "from-emerald-400/60" : tone === "amber" ? "from-amber-400/60" : "from-red/70";
   return (
-    <div className="card group hover:border-white/10 transition-colors">
+    <div className="card group hover:border-white/10 transition-colors animate-count-up">
       <div className={`absolute left-0 top-4 bottom-4 w-0.5 bg-gradient-to-b ${stripe} to-transparent rounded-full`} />
       <div className="stat-label mb-3">{label}</div>
       <div className={`stat-value ${toneClass}`}>{value}</div>

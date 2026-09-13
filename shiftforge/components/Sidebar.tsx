@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 
 const nav = [
   { href: "/", label: "Dashboard" },
+  { href: "/site", label: "Site Map" },
   { href: "/assets", label: "Assets" },
   { href: "/shifts", label: "Shifts" },
   { href: "/reports", label: "Reports" },
@@ -82,6 +83,18 @@ export default function Sidebar() {
 
       {/* Foot */}
       <div className="p-5 border-t border-white/5 space-y-4">
+        {/* ⌘K hint */}
+        <button
+          onClick={() => window.dispatchEvent(new Event("sf-open-palette"))}
+          className="w-full flex items-center justify-between px-3 py-2 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/[0.03] transition-all text-left"
+        >
+          <span className="text-[10px] font-extrabold text-paper/50 uppercase" style={{ letterSpacing: "0.2em" }}>
+            Quick jump
+          </span>
+          <kbd className="text-[10px] font-extrabold text-paper/60 uppercase border border-white/10 rounded px-1.5 py-0.5" style={{ letterSpacing: "0.16em" }}>
+            ⌘K
+          </kbd>
+        </button>
         <div>
           <div className="text-[10px] font-extrabold text-paper/40 uppercase" style={{ letterSpacing: "0.24em" }}>
             Site

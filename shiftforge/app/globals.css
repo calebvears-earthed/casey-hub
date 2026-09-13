@@ -124,20 +124,88 @@
   .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
 }
 
+/* Keyframe animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes loading-bar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.18s ease-out both; }
+.animate-slide-up { animation: slide-up 0.24s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+.animate-pulse-slow { animation: pulse-slow 2.4s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 3s linear infinite; }
+.animate-loading-bar { animation: loading-bar 1.2s ease-in-out infinite; }
+.animate-count-up { animation: count-up 0.5s ease-out both; }
+
 /* Print styles — for Download PDF flow (window.print) */
 @media print {
+  @page {
+    size: A4;
+    margin: 18mm 15mm 22mm 15mm;
+    @top-left {
+      content: "ShiftForge · Smart Reports";
+      font-family: 'Archivo', sans-serif;
+      font-weight: 900;
+      font-size: 10pt;
+      color: #14100E;
+      letter-spacing: -0.02em;
+    }
+    @top-right {
+      content: "Prominent Hill · Top Gun Engineering";
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 8pt;
+      color: #D0261F;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    @bottom-left {
+      content: "Confidential · Prepared in ShiftForge";
+      font-family: 'Archivo', sans-serif;
+      font-size: 7pt;
+      color: #6E675F;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    @bottom-right {
+      content: "Page " counter(page) " / " counter(pages);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: #14100E;
+    }
+  }
   html, body {
     background: #ffffff !important;
     color: #14100E !important;
     background-image: none !important;
   }
   body::before { display: none !important; }
-  aside, header, .btn-primary, .btn-ghost, .print\:hidden {
+  aside, header, nav, .btn-primary, .btn-ghost, .print\:hidden {
     display: none !important;
   }
   main {
     margin-left: 0 !important;
     padding: 0 !important;
+    padding-top: 8mm !important;
     max-width: 100% !important;
   }
   .card {
@@ -147,13 +215,20 @@
     page-break-inside: avoid;
     box-shadow: none !important;
     backdrop-filter: none !important;
+    padding: 12pt !important;
+    margin-bottom: 10pt !important;
   }
   .card::before { display: none !important; }
   .eyebrow { color: #D0261F !important; }
   .text-paper, .text-paper\/90, .text-paper\/80, .text-paper\/70 { color: #14100E !important; }
   .text-paper\/60, .text-paper\/50, .text-paper\/40 { color: #57504a !important; }
   .text-red { color: #D0261F !important; }
-  .mono { color: #14100E !important; }
+  .mono { color: #14100E !important; font-family: 'JetBrains Mono', monospace !important; }
   .divider-red { background: #D0261F !important; box-shadow: none !important; }
-  .pill { border: 1px solid #d8d2ca; }
+  .pill { border: 1px solid #d8d2ca; background: #f7f4ef !important; color: #14100E !important; }
+  h1 { font-size: 18pt !important; }
+  h2 { font-size: 13pt !important; }
+  h3 { font-size: 11pt !important; }
+  /* Signature panel prints */
+  section, div { break-inside: avoid; }
 }

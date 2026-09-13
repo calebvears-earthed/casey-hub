@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useToast } from "@/components/Toast";
+import { tap, pop } from "@/lib/haptic";
 
 type Props = {
   reportId: string;
@@ -16,15 +18,17 @@ export default function ReportActions({ reportId, assetCode, priority, author, i
   const [tone, setTone] = useState<"tight" | "detailed" | "urgent">("tight");
   const [generating, setGenerating] = useState(false);
   const [draft, setDraft] = useState<string | null>(null);
+  const { push } = useToast();
 
   function download() {
-    // Uses the browser's print-to-PDF via window.print() — a print stylesheet controls the output.
-    // In Phase 2 this swaps to @react-pdf/renderer for real server-side PDFs.
-    window.print();
+    tap();
+    push({ kind: "info", text: "Opening print dialog…" });
+    setTimeout(() => window.print(), 200);
   }
 
   function generateEmail() {
     setGenerating(true);
+    tap();
     // Concept-mode: mock the AI. In Phase 2 this hits /api/generate → Claude API.
     setTimeout(() => {
       const intros: Record<typeof tone, string> = {
@@ -34,12 +38,13 @@ export default function ReportActions({ reportId, assetCode, priority, author, i
       };
       setDraft(intros[tone]);
       setGenerating(false);
+      push({ kind: "ok", text: "AI draft ready" });
     }, 900);
   }
 
   function send() {
-    // Concept-mode: fake send. Phase 2 wires to Resend / SendGrid.
-    alert(`✅ Sent (mocked) to ${emailTo}\ncc ${emailCc}\n\nreport ${reportId} · asset ${assetCode}`);
+    pop();
+    push({ kind: "ok", text: `Sent to ${emailTo.split("@")[0]} · report ${reportId}` });
     setModal(null);
     setDraft(null);
   }
@@ -57,7 +62,7 @@ export default function ReportActions({ reportId, assetCode, priority, author, i
         >
           ✉ Email Report
         </button>
-        <button className="btn-ghost" onClick={() => alert("Concept mode — Slack/Teams send in Phase 2")}>💬 Send to Slack</button>
+        <button className="btn-ghost" onClick={() => { tap(); push({ kind: "info", text: "Slack integration lands in Phase 2" }); }}>💬 Send to Slack</button>
       </div>
 
       {modal === "email" && (

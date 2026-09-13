@@ -1,5 +1,7 @@
 import assets from "@/data/assets.json";
 import reports from "@/data/reports.json";
+import FaultHeatmap from "@/components/FaultHeatmap";
+import TimelineScrubber from "@/components/TimelineScrubber";
 
 export default function Analytics() {
   return (
@@ -53,6 +55,10 @@ export default function Analytics() {
           </div>
         </div>
       </div>
+
+      <FaultHeatmap assetCodes={assets.map((a) => a.asset_code)} />
+
+      <TimelineScrubber />
 
       <div className="card">
         <h2 className="text-lg font-bold mb-2">Natural language query</h2>
