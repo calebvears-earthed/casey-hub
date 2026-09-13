@@ -1,23 +1,25 @@
 import assets from "@/data/assets.json";
 import reports from "@/data/reports.json";
 import Link from "next/link";
+import HeroBanner from "@/components/HeroBanner";
 
 export default function Dashboard() {
   const openFaults = assets.reduce((sum, a) => sum + a.open_faults, 0);
   const critical = reports.filter((r) => r.priority === "critical").length;
   const underMaintenance = assets.filter((a) => a.status === "under_maintenance").length;
+  const avgHealth = Math.round((assets.reduce((s, a) => s + a.health_score, 0) / assets.length) * 100);
   return (
-    <div className="max-w-7xl mx-auto space-y-10">
-      {/* Header */}
-      <div>
-        <div className="eyebrow mb-3">Dashboard · Day Shift · 13 Sep 2026</div>
-        <h1 className="text-5xl leading-none">Site Ops Overview</h1>
-        <p className="text-paper/60 mt-3 text-sm">Prominent Hill · Real-time asset + shift intelligence</p>
-        <div className="divider-red mt-5" />
-      </div>
+    <div className="max-w-7xl mx-auto space-y-6 lg:space-y-8">
+      <HeroBanner
+        eyebrow="Prominent Hill · Day Shift · 13 Sep 2026"
+        title="Site Ops Overview"
+        subtitle="Every haul, every rig, every substation — one operating picture. Real-time asset + shift intelligence flowing back to base."
+        rightStat={{ label: "Fleet Health", value: `${avgHealth}%`, sub: `${assets.length} assets tracked` }}
+        variant="pit"
+      />
 
       {/* Stat row */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         <StatCard label="Active Assets" value={assets.length.toString()} tone="green" sub={`${assets.filter(a => a.status === "operational").length} operational`} />
         <StatCard label="Open Faults" value={openFaults.toString()} tone="amber" sub="across fleet" />
         <StatCard label="Under Maintenance" value={underMaintenance.toString()} tone="amber" sub="assets" />
@@ -25,14 +27,14 @@ export default function Dashboard() {
       </div>
 
       {/* Content grid */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-2 card">
-          <div className="flex items-center justify-between mb-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="lg:col-span-2 card">
+          <div className="flex items-center justify-between mb-5 gap-3">
             <div>
               <div className="eyebrow mb-1">Feed</div>
-              <h2 className="text-2xl">Recent Handovers</h2>
+              <h2 className="text-xl sm:text-2xl">Recent Handovers</h2>
             </div>
-            <Link href="/reports/new" className="btn-ghost">+ New Report</Link>
+            <Link href="/reports/new" className="btn-ghost whitespace-nowrap">+ New Report</Link>
           </div>
           <div className="space-y-4">
             {reports.slice(0, 5).map((r) => (
@@ -56,7 +58,7 @@ export default function Dashboard() {
         <div className="card">
           <div className="mb-5">
             <div className="eyebrow mb-1">Fleet</div>
-            <h2 className="text-2xl">Equipment Health</h2>
+            <h2 className="text-xl sm:text-2xl">Equipment Health</h2>
           </div>
           <div className="space-y-4">
             {assets.map((a) => (

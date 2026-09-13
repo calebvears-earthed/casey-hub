@@ -40,7 +40,7 @@ function GearMark({ className = "w-9 h-9" }: { className?: string }) {
 export default function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-dark border-r border-white/5 flex flex-col">
+    <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-64 bg-dark border-r border-white/5 flex-col print:hidden">
       {/* Brand lockup */}
       <div className="p-6 border-b border-white/5">
         <div className="flex items-center gap-3">

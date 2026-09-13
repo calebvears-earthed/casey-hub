@@ -20,12 +20,12 @@ export default function NewReport() {
     <div className="max-w-6xl mx-auto space-y-6">
       <div>
         <div className="text-xs text-red font-bold uppercase tracking-widest mb-2">New Shift Report</div>
-        <h1 className="text-4xl font-bold">Report Details</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Report Details</h1>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
         <div className="card space-y-4">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Date"><input type="date" defaultValue="2026-09-13" className="input" /></Field>
             <Field label="Shift"><select className="input"><option>Day</option><option>Afternoon</option><option>Night</option></select></Field>
             <Field label="Report Type"><select className="input"><option>Shift Report</option><option>Incident</option><option>Service Log</option><option>Inspection</option></select></Field>
@@ -64,13 +64,13 @@ export default function NewReport() {
           <Field label="Planned work · next shift"><textarea className="input h-16" placeholder="Follow-up items..." /></Field>
           <Field label="Recommendations"><textarea className="input h-16" placeholder="Optional notes for engineering team..." /></Field>
 
-          <div className="flex gap-3 pt-4 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/5">
             <button onClick={handleGenerate} disabled={loading} className="btn-primary flex-1 disabled:opacity-50">{loading ? "AI drafting..." : "Generate AI Report"}</button>
             <button className="btn-ghost">Clear Form</button>
           </div>
         </div>
 
-        <div className="card sticky top-6 self-start">
+        <div className="card lg:sticky lg:top-6 self-start">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold">Generated Report</h2>
             {generated && <button className="text-xs text-red hover:underline">Sign Off + Distribute</button>}

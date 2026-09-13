@@ -7,7 +7,7 @@ export default function Handover() {
     <div className="max-w-6xl mx-auto space-y-6">
       <div>
         <div className="text-xs text-red font-bold uppercase tracking-widest mb-2">Handover Briefing · Day Shift · 13 Sep 2026 · 06:00</div>
-        <h1 className="text-4xl font-bold">Read + acknowledge before starting work.</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Read + acknowledge before starting work.</h1>
       </div>
 
       <div className="card border-red/40">
@@ -43,7 +43,7 @@ export default function Handover() {
         </div>
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <button className="btn-primary">✓ Read + Acknowledge — Start Shift</button>
         <button className="btn-ghost">Raise question with Supervisor</button>
       </div>

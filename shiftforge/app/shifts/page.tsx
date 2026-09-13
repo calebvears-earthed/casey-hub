@@ -3,9 +3,9 @@ export default function Shifts() {
     <div className="max-w-6xl mx-auto space-y-6">
       <div>
         <div className="text-xs text-red font-bold uppercase tracking-widest mb-2">Shifts</div>
-        <h1 className="text-4xl font-bold">Shift Roster + Handover Chain</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Shift Roster + Handover Chain</h1>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {["Day · 06:00-14:00", "Afternoon · 14:00-22:00", "Night · 22:00-06:00"].map((s, i) => (
           <div key={i} className="card">
             <div className="text-xs text-cream/50 uppercase tracking-wider">{s.split(" · ")[0]}</div>

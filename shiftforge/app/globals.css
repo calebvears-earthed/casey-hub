@@ -5,21 +5,45 @@
 @layer base {
   html { color-scheme: dark; }
   body {
-    @apply bg-charcoal text-paper font-sans antialiased;
+    @apply text-paper font-sans antialiased;
+    background-color: #050403;
     background-image:
-      radial-gradient(1200px 600px at 85% -10%, rgba(208, 38, 31, 0.08), transparent 60%),
-      radial-gradient(1000px 500px at -10% 110%, rgba(81, 57, 99, 0.10), transparent 60%);
+      /* red glow top-right (mine pit warmth) */
+      radial-gradient(1200px 700px at 90% -20%, rgba(208, 38, 31, 0.18), transparent 55%),
+      /* deep purple wash bottom-left */
+      radial-gradient(1100px 600px at -10% 110%, rgba(81, 57, 99, 0.15), transparent 55%),
+      /* subtle inner darkening for depth */
+      radial-gradient(1400px 800px at 50% 50%, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
   }
   h1, h2, h3, h4 { @apply font-heading; letter-spacing: -0.02em; font-weight: 900; }
   .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Ambient topo-contour layer — sits above bg, below content */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'><g fill='none' stroke='%23D0261F' stroke-width='0.6' stroke-opacity='0.08'><path d='M-50,120 Q 100,60 250,140 T 550,120 T 850,180'/><path d='M-50,180 Q 120,140 260,200 T 560,190 T 860,240'/><path d='M-50,240 Q 130,210 270,260 T 570,270 T 870,290'/><path d='M-50,320 Q 160,290 300,340 T 600,340 T 900,360'/><path d='M-50,400 Q 180,380 320,420 T 620,420 T 920,440'/><path d='M-50,480 Q 200,460 340,500 T 640,500 T 940,520'/></g></svg>");
+    background-size: 900px 900px;
+    background-repeat: repeat;
+    opacity: 0.55;
+    z-index: 0;
+  }
+  main, aside, header { position: relative; z-index: 1; }
 }
 
 @layer components {
-  /* Cards — subtle top highlight, warm ink surface */
+  /* Cards — subtle top highlight, glassy ink surface */
   .card {
-    @apply bg-elevated border border-white/[0.06] rounded-xl p-5 relative overflow-hidden;
+    @apply border border-white/[0.06] rounded-xl p-5 relative overflow-hidden;
+    background: linear-gradient(180deg, rgba(27, 22, 19, 0.92), rgba(20, 16, 14, 0.88));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
   .card::before {
     content: '';
@@ -36,9 +60,9 @@
   .btn-primary {
     @apply bg-red hover:bg-red-hover text-paper font-extrabold uppercase text-xs px-6 py-3 rounded-lg transition-all;
     letter-spacing: 0.22em;
-    box-shadow: 0 8px 20px -8px rgba(208, 38, 31, 0.5);
+    box-shadow: 0 8px 24px -6px rgba(208, 38, 31, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
-  .btn-primary:hover { box-shadow: 0 10px 24px -6px rgba(208, 38, 31, 0.6); }
+  .btn-primary:hover { box-shadow: 0 10px 28px -6px rgba(208, 38, 31, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12); }
   .btn-ghost {
     @apply border border-white/10 text-paper/80 hover:text-paper hover:border-white/20 hover:bg-white/[0.03] font-bold uppercase text-xs px-5 py-2.5 rounded-lg transition-all;
     letter-spacing: 0.18em;
@@ -72,6 +96,7 @@
   }
   .divider-red {
     @apply w-8 h-0.5 bg-red rounded-full;
+    box-shadow: 0 0 12px rgba(208, 38, 31, 0.6);
   }
 
   /* Stat numeral display */
@@ -83,6 +108,20 @@
     @apply text-[10px] font-extrabold text-paper/50 uppercase;
     letter-spacing: 0.24em;
   }
+
+  /* Red glow accent — for hero elements */
+  .glow-red {
+    box-shadow: 0 0 40px -8px rgba(208, 38, 31, 0.6), 0 0 80px -20px rgba(208, 38, 31, 0.4);
+  }
+  .text-glow-red {
+    text-shadow: 0 0 24px rgba(208, 38, 31, 0.7), 0 0 48px rgba(208, 38, 31, 0.4);
+  }
+}
+
+@layer utilities {
+  /* Safe-area for iOS notch (drawer, header) */
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
 }
 
 /* Print styles — for Download PDF flow (window.print) */
@@ -92,7 +131,8 @@
     color: #14100E !important;
     background-image: none !important;
   }
-  aside, nav, .btn-primary, .btn-ghost, .print\:hidden {
+  body::before { display: none !important; }
+  aside, header, .btn-primary, .btn-ghost, .print\:hidden {
     display: none !important;
   }
   main {
@@ -106,6 +146,7 @@
     color: #14100E !important;
     page-break-inside: avoid;
     box-shadow: none !important;
+    backdrop-filter: none !important;
   }
   .card::before { display: none !important; }
   .eyebrow { color: #D0261F !important; }
@@ -113,6 +154,6 @@
   .text-paper\/60, .text-paper\/50, .text-paper\/40 { color: #57504a !important; }
   .text-red { color: #D0261F !important; }
   .mono { color: #14100E !important; }
-  .divider-red { background: #D0261F !important; }
+  .divider-red { background: #D0261F !important; box-shadow: none !important; }
   .pill { border: 1px solid #d8d2ca; }
 }

@@ -61,16 +61,16 @@ export default function ReportActions({ reportId, assetCode, priority, author, i
       </div>
 
       {modal === "email" && (
-        <div className="fixed inset-0 z-50 bg-charcoal/80 backdrop-blur-sm flex items-center justify-center p-6">
-          <div className="w-full max-w-2xl bg-elevated border border-white/10 rounded-xl shadow-2xl relative overflow-hidden">
+        <div className="fixed inset-0 z-[60] bg-charcoal/80 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-6 print:hidden">
+          <div className="w-full sm:max-w-2xl bg-elevated border border-white/10 rounded-t-2xl sm:rounded-xl shadow-2xl relative overflow-hidden max-h-[92vh] sm:max-h-[85vh] flex flex-col">
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red via-red/40 to-transparent" />
             <div className="p-6 border-b border-white/5">
               <div className="eyebrow mb-1">Email Report</div>
               <h3 className="text-2xl">Send {reportId} · {assetCode}</h3>
             </div>
 
-            <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
-              <div className="grid grid-cols-2 gap-3">
+            <div className="p-6 space-y-4 overflow-y-auto flex-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="stat-label">To</label>
                   <input value={emailTo} onChange={(e) => setEmailTo(e.target.value)} className="input mt-1.5" />

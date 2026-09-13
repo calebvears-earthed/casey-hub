@@ -38,7 +38,7 @@ export default function AssetDetail({ params }: { params: { id: string } }) {
   const dueSoonCount = assetSchedule.filter((s) => s.status === "due_soon").length;
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div className="max-w-7xl mx-auto space-y-6 lg:space-y-8">
       <div>
         <Link href="/assets" className="text-[11px] font-bold text-paper/50 hover:text-red uppercase" style={{ letterSpacing: "0.18em" }}>
           ← Back to Assets
@@ -47,28 +47,28 @@ export default function AssetDetail({ params }: { params: { id: string } }) {
 
       {/* 1 · HEADER STRIP */}
       <div className="card relative">
-        <div className="flex items-start justify-between gap-6 flex-wrap">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="mono text-red text-3xl font-black">{asset.asset_code}</span>
+        <div className="flex items-start justify-between gap-4 sm:gap-6 flex-wrap">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 flex-wrap">
+              <span className="mono text-red text-2xl sm:text-3xl font-black">{asset.asset_code}</span>
               <span className="pill bg-purple/20 text-purple">{asset.discipline}</span>
               <StatusPill status={asset.status} />
             </div>
-            <h1 className="text-4xl leading-none">{asset.description}</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl leading-tight">{asset.description}</h1>
             <p className="text-paper/60 text-sm mt-2">{asset.location}</p>
-            <div className="flex items-center gap-4 mt-4 text-[11px] text-paper/50 uppercase" style={{ letterSpacing: "0.16em" }}>
+            <div className="flex items-center gap-2 sm:gap-4 mt-4 text-[10px] sm:text-[11px] text-paper/50 uppercase flex-wrap" style={{ letterSpacing: "0.16em" }}>
               <span>{asset.make}</span>
               <span>·</span>
               <span>{asset.model}</span>
-              <span>·</span>
-              <span className="mono normal-case">{asset.serial}</span>
+              <span className="hidden sm:inline">·</span>
+              <span className="mono normal-case w-full sm:w-auto">{asset.serial}</span>
             </div>
           </div>
 
           {/* QR mock */}
-          <div className="text-right">
-            <div className="stat-label mb-2">Scan on machine</div>
-            <div className="w-24 h-24 grid grid-cols-6 grid-rows-6 gap-[2px] bg-paper p-1.5 rounded-md">
+          <div className="text-right flex-none">
+            <div className="stat-label mb-2">Scan</div>
+            <div className="w-20 h-20 sm:w-24 sm:h-24 grid grid-cols-6 grid-rows-6 gap-[2px] bg-paper p-1.5 rounded-md">
               {Array.from({ length: 36 }).map((_, i) => (
                 <div key={i} className={`${(i * 7 + 3) % 5 === 0 || (i * 11 + 1) % 3 === 0 ? "bg-ink" : "bg-paper"}`} />
               ))}
@@ -79,7 +79,7 @@ export default function AssetDetail({ params }: { params: { id: string } }) {
       </div>
 
       {/* 2 · LIVE STATUS TILES */}
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <MiniStat label="Health" value={`${Math.round(asset.health_score * 100)}%`} tone={asset.health_score > 0.75 ? "green" : asset.health_score > 0.5 ? "amber" : "red"} />
         <MiniStat label="Runtime" value={asset.service_hours.toLocaleString()} sub={`of ${asset.expected_life_hours.toLocaleString()} h · ${runtimePct}%`} />
         <MiniStat label="Open Faults" value={asset.open_faults.toString()} tone={asset.open_faults === 0 ? "green" : asset.open_faults > 3 ? "red" : "amber"} />
@@ -88,8 +88,8 @@ export default function AssetDetail({ params }: { params: { id: string } }) {
       </div>
 
       {/* 3 · SPEC SHEET + 4 · DOCS side-by-side */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="card col-span-1">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="card lg:col-span-1">
           <div className="mb-4">
             <div className="eyebrow mb-1">Spec Sheet</div>
             <h2 className="text-xl">Machine Details</h2>
@@ -105,7 +105,7 @@ export default function AssetDetail({ params }: { params: { id: string } }) {
           </dl>
         </div>
 
-        <div className="card col-span-2">
+        <div className="card lg:col-span-2">
           <div className="mb-4 flex items-start justify-between">
             <div>
               <div className="eyebrow mb-1">Document Library</div>
@@ -148,8 +148,8 @@ export default function AssetDetail({ params }: { params: { id: string } }) {
       </div>
 
       {/* 6 · REPORT TIMELINE + 7 · AI INSIGHTS */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="card col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="card lg:col-span-2">
           <div className="mb-5">
             <div className="eyebrow mb-1">History</div>
             <h2 className="text-2xl">Report Timeline · Full Memory</h2>
@@ -279,18 +279,36 @@ function ServiceRow({ item }: { item: SchedItem }) {
       ? `Next: ${item.next_due_hours.toLocaleString()} h · ${(item.next_due_hours - item.current_hours).toLocaleString()} h to go`
       : "Ad-hoc";
   return (
-    <div className="grid grid-cols-[110px_100px_1fr_180px_110px] gap-3 items-center p-3 rounded-lg border border-white/5 hover:border-white/10 hover:bg-white/[0.02] transition-all">
-      <div className="mono text-[11px] text-paper/70">{item.id}</div>
-      <div className="text-[11px] font-bold text-red uppercase" style={{ letterSpacing: "0.14em" }}>{item.interval}</div>
-      <div className="text-[13px] text-paper/90">
-        {item.task}
+    <div className="p-3 rounded-lg border border-white/5 hover:border-white/10 hover:bg-white/[0.02] transition-all">
+      {/* Mobile: stacked */}
+      <div className="md:hidden space-y-2">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="mono text-[11px] text-paper/70">{item.id}</span>
+            <span className="text-[10px] font-bold text-red uppercase" style={{ letterSpacing: "0.14em" }}>{item.interval}</span>
+          </div>
+          <span className={`pill ${tone.pill}`}>{tone.label}</span>
+        </div>
+        <div className="text-[13px] text-paper/90 leading-snug">{item.task}</div>
         {item.parts.length > 0 && (
-          <div className="text-[11px] text-paper/50 mt-1">Parts: {item.parts.join(" · ")}</div>
+          <div className="text-[11px] text-paper/50">Parts: {item.parts.join(" · ")}</div>
         )}
+        <div className="text-[10px] text-paper/60 uppercase" style={{ letterSpacing: "0.14em" }}>{dueText}</div>
       </div>
-      <div className="text-[11px] text-paper/60 uppercase" style={{ letterSpacing: "0.12em" }}>{dueText}</div>
-      <div className="text-right">
-        <span className={`pill ${tone.pill}`}>{tone.label}</span>
+      {/* Desktop: grid */}
+      <div className="hidden md:grid grid-cols-[110px_100px_1fr_180px_110px] gap-3 items-center">
+        <div className="mono text-[11px] text-paper/70">{item.id}</div>
+        <div className="text-[11px] font-bold text-red uppercase" style={{ letterSpacing: "0.14em" }}>{item.interval}</div>
+        <div className="text-[13px] text-paper/90">
+          {item.task}
+          {item.parts.length > 0 && (
+            <div className="text-[11px] text-paper/50 mt-1">Parts: {item.parts.join(" · ")}</div>
+          )}
+        </div>
+        <div className="text-[11px] text-paper/60 uppercase" style={{ letterSpacing: "0.12em" }}>{dueText}</div>
+        <div className="text-right">
+          <span className={`pill ${tone.pill}`}>{tone.label}</span>
+        </div>
       </div>
     </div>
   );

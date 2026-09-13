@@ -6,17 +6,17 @@ export default function Analytics() {
     <div className="max-w-7xl mx-auto space-y-6">
       <div>
         <div className="text-xs text-red font-bold uppercase tracking-widest mb-2">Analytics · Last 30 Days</div>
-        <h1 className="text-4xl font-bold">Patterns · Predictions · Cost Avoidance</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Patterns · Predictions · Cost Avoidance</h1>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         <div className="card"><div className="text-xs text-cream/50 uppercase">Total Reports</div><div className="text-3xl font-heading font-bold text-cream">{reports.length}</div><div className="text-xs text-green-400">+18% vs prior 30 days</div></div>
         <div className="card"><div className="text-xs text-cream/50 uppercase">Faults Caught Early</div><div className="text-3xl font-heading font-bold text-green-400">7</div><div className="text-xs text-cream/50">before failure</div></div>
         <div className="card"><div className="text-xs text-cream/50 uppercase">Est. Downtime Prevented</div><div className="text-3xl font-heading font-bold text-red">$186k</div><div className="text-xs text-cream/50">this month</div></div>
         <div className="card"><div className="text-xs text-cream/50 uppercase">Avg Handover Time</div><div className="text-3xl font-heading font-bold text-cream">4.2min</div><div className="text-xs text-green-400">-71% vs paper baseline</div></div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="card">
           <h2 className="text-lg font-bold mb-4">AI-flagged trends</h2>
           <div className="space-y-3">
@@ -57,9 +57,9 @@ export default function Analytics() {
       <div className="card">
         <h2 className="text-lg font-bold mb-2">Natural language query</h2>
         <p className="text-cream/60 text-sm mb-3">Ask ShiftForge anything about your fleet, shifts, or history.</p>
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <input className="input flex-1" placeholder="e.g. show me every hydraulic fault on level 72 in the last 60 days" />
-          <button className="btn-primary">Ask AI</button>
+          <button className="btn-primary sm:flex-none">Ask AI</button>
         </div>
       </div>
     </div>

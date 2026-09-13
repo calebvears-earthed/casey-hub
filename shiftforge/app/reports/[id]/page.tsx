@@ -10,7 +10,7 @@ export default function ReportDetail({ params }: { params: { id: string } }) {
   const asset = assets.find((a) => a.id === report.asset_id);
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
+    <div className="max-w-5xl mx-auto space-y-6 lg:space-y-8">
       <div className="print:hidden">
         <Link href="/reports" className="text-[11px] font-bold text-paper/50 hover:text-red uppercase" style={{ letterSpacing: "0.18em" }}>
           ← Back to Reports
@@ -25,20 +25,26 @@ export default function ReportDetail({ params }: { params: { id: string } }) {
               <span className="eyebrow">Handover Report</span>
               <PriorityPill priority={report.priority} />
             </div>
-            <h1 className="text-4xl leading-none mb-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl leading-none mb-2 break-words">
               <span className="mono text-red">{report.id}</span> · {report.asset_code}
             </h1>
             <p className="text-paper/60 mt-2 text-sm">
               {asset?.description} · {asset?.location}
             </p>
           </div>
-          <div className="text-right">
-            <div className="stat-label mb-1">Shift</div>
-            <div className="text-lg font-bold uppercase" style={{ letterSpacing: "0.18em" }}>{report.shift}</div>
-            <div className="stat-label mt-3 mb-1">Date</div>
-            <div className="mono text-lg text-paper">{report.date}</div>
-            <div className="stat-label mt-3 mb-1">Author</div>
-            <div className="text-sm font-bold text-paper">{report.author}</div>
+          <div className="text-left sm:text-right w-full sm:w-auto grid grid-cols-3 sm:grid-cols-1 gap-3 sm:gap-0 pt-3 sm:pt-0 border-t sm:border-0 border-white/5">
+            <div>
+              <div className="stat-label mb-1 sm:mb-1">Shift</div>
+              <div className="text-sm sm:text-lg font-bold uppercase" style={{ letterSpacing: "0.18em" }}>{report.shift}</div>
+            </div>
+            <div>
+              <div className="stat-label mt-0 sm:mt-3 mb-1">Date</div>
+              <div className="mono text-sm sm:text-lg text-paper">{report.date}</div>
+            </div>
+            <div>
+              <div className="stat-label mt-0 sm:mt-3 mb-1">Author</div>
+              <div className="text-xs sm:text-sm font-bold text-paper">{report.author}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +61,7 @@ export default function ReportDetail({ params }: { params: { id: string } }) {
       </div>
 
       {/* Body sections */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Section title="Work Completed" body={report.work_completed} />
         <Section title="Issues Identified" body={report.issues_identified} tone="red" />
         <Section title="Actions Taken" body={report.actions_taken} />
@@ -64,7 +70,7 @@ export default function ReportDetail({ params }: { params: { id: string } }) {
         <Section title="Current Status" body={humanStatus(report.current_status)} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Section title="Planned Next Shift" body={report.planned_next} />
         <Section title="Recommendations" body={report.recommendations} tone="red" />
       </div>
@@ -72,7 +78,7 @@ export default function ReportDetail({ params }: { params: { id: string } }) {
       {/* Signature panel */}
       <div className="card">
         <div className="eyebrow mb-3">Sign-off</div>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <SignatureBlock label="Author" name={report.author} date={report.date} />
           <SignatureBlock label="Supervisor" name="Ryan Porteous" date="pending" />
           <SignatureBlock label="Engineering Review" name="Sam Chen" date="pending" />
