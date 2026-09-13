@@ -1,0 +1,30 @@
+{
+  "AST-001": [
+    { "id": "DOC-C32-01", "type": "manual", "title": "Cat C32 ACERT Service Manual · Rev 4", "date": "2023-04-12", "size": "18.4 MB" },
+    { "id": "DOC-C32-02", "type": "drawing", "title": "N2 Spur Drive Assembly · GA-04421", "date": "2023-03-28", "size": "2.1 MB" },
+    { "id": "DOC-C32-03", "type": "cert", "title": "Commissioning Certificate · Ipswich Motors", "date": "2023-04-14", "size": "820 KB" },
+    { "id": "DOC-C32-04", "type": "swms", "title": "SWMS · Drive Coupling Alignment", "date": "2026-01-10", "size": "1.4 MB" }
+  ],
+  "AST-002": [
+    { "id": "DOC-HYD-01", "type": "manual", "title": "Sauer-Danfoss H1P-115 Service Bulletin", "date": "2022-08-03", "size": "9.8 MB" },
+    { "id": "DOC-HYD-02", "type": "drawing", "title": "Hydraulic Schematic · Pump Station 14", "date": "2022-07-15", "size": "1.7 MB" },
+    { "id": "DOC-HYD-03", "type": "report", "title": "Fluid Analysis Q2 2026 · WearCheck", "date": "2026-06-20", "size": "480 KB" }
+  ],
+  "AST-003": [
+    { "id": "DOC-TF-01", "type": "manual", "title": "Wilson Mk 7 Padmount Operating Manual", "date": "2024-11-22", "size": "12.1 MB" },
+    { "id": "DOC-TF-02", "type": "drawing", "title": "500 kVA LILO Layout · DST3562_3", "date": "2024-10-18", "size": "3.2 MB" },
+    { "id": "DOC-TF-03", "type": "cert", "title": "SAPN Commissioning Certificate", "date": "2024-11-24", "size": "1.1 MB" },
+    { "id": "DOC-TF-04", "type": "report", "title": "IR Scan Report May 2026 · IRT Contractors", "date": "2026-05-18", "size": "3.6 MB" }
+  ],
+  "AST-004": [
+    { "id": "DOC-793-01", "type": "manual", "title": "Cat 793F Operator + Service Manual", "date": "2021-06-18", "size": "42.6 MB" },
+    { "id": "DOC-793-02", "type": "swms", "title": "SWMS · Tyre Change 793F", "date": "2025-02-04", "size": "2.0 MB" },
+    { "id": "DOC-793-03", "type": "report", "title": "Frame Inspection · NDT July 2026", "date": "2026-07-06", "size": "5.4 MB" }
+  ],
+  "AST-005": [
+    { "id": "DOC-DM45-01", "type": "manual", "title": "Sandvik DM45 Maintenance Guide", "date": "2020-02-14", "size": "22.9 MB" },
+    { "id": "DOC-DM45-02", "type": "drawing", "title": "Rotary Head Assembly · GA-DM45-07", "date": "2020-02-10", "size": "1.9 MB" },
+    { "id": "DOC-DM45-03", "type": "report", "title": "Vibration Baseline · Sandvik 2020", "date": "2020-03-01", "size": "2.6 MB" },
+    { "id": "DOC-DM45-04", "type": "report", "title": "Vibration Signature · Sep 2026 (attached to RPT-020)", "date": "2026-09-12", "size": "1.2 MB" }
+  ]
+}

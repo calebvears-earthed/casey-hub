@@ -1,0 +1,57 @@
+{
+  "AST-001": [
+    { "key": "Rated Power", "value": "895 kW @ 1800 rpm" },
+    { "key": "Voltage", "value": "6600 V · 3-phase" },
+    { "key": "Full Load Current", "value": "97 A" },
+    { "key": "Insulation Class", "value": "Class F · 155°C" },
+    { "key": "Duty Cycle", "value": "S1 continuous" },
+    { "key": "Bearing Type", "value": "SKF 6320 C3 (DE) · 6316 C3 (NDE)" },
+    { "key": "Coupling", "value": "Falk Steelflex 1090T10" },
+    { "key": "Lube Spec", "value": "Mobilgear XMP 320" },
+    { "key": "Enclosure IP", "value": "IP56" }
+  ],
+  "AST-002": [
+    { "key": "Max Pressure", "value": "350 bar" },
+    { "key": "Displacement", "value": "115 cc/rev" },
+    { "key": "Flow @ 1800rpm", "value": "207 L/min" },
+    { "key": "Drive", "value": "SAE B 2-bolt" },
+    { "key": "Fluid Spec", "value": "ISO VG 46 · Mobil DTE 25" },
+    { "key": "Filtration", "value": "Beta 10 ≥ 200 · 3 µm nominal" },
+    { "key": "Reservoir Capacity", "value": "480 L" },
+    { "key": "Control", "value": "Load-sensing pressure comp" }
+  ],
+  "AST-003": [
+    { "key": "kVA Rating", "value": "500 kVA · ONAN" },
+    { "key": "HV Winding", "value": "11 000 V · Delta" },
+    { "key": "LV Winding", "value": "433 V · Star" },
+    { "key": "Impedance", "value": "5.75% @ 75°C" },
+    { "key": "Vector Group", "value": "Dyn11" },
+    { "key": "Cooling", "value": "ONAN · 65°C rise" },
+    { "key": "Oil Type", "value": "Nynas Nytro Libra" },
+    { "key": "Tap Changer", "value": "Off-load ±2.5% ±5%" },
+    { "key": "RMU Type", "value": "Wilson integrated · SF6" },
+    { "key": "Standards", "value": "AS/NZS 60076 · SAPN TS-108" }
+  ],
+  "AST-004": [
+    { "key": "Payload", "value": "240 metric tonnes" },
+    { "key": "Engine", "value": "Cat 3516B EUI · 2 300 kW gross" },
+    { "key": "Transmission", "value": "Cat 7-speed powershift" },
+    { "key": "GVW (loaded)", "value": "384 t" },
+    { "key": "Tyres", "value": "Michelin 40.00R57 XDR3" },
+    { "key": "Fuel Capacity", "value": "4 542 L" },
+    { "key": "DEF Capacity", "value": "150 L" },
+    { "key": "Brakes", "value": "Oil-cooled multi-disc, all wheels" },
+    { "key": "Body", "value": "Duratray DTS · steel-lined" }
+  ],
+  "AST-005": [
+    { "key": "Hole Diameter", "value": "152–229 mm" },
+    { "key": "Max Depth (single pass)", "value": "9.1 m" },
+    { "key": "Rotary Head Torque", "value": "10 850 Nm" },
+    { "key": "Pulldown Force", "value": "27 200 kg" },
+    { "key": "Compressor", "value": "Sullair 1150/350 · 32.6 m³/min" },
+    { "key": "Engine", "value": "Cat C27 · 597 kW" },
+    { "key": "Tramming Speed", "value": "1.9 km/h" },
+    { "key": "Weight", "value": "34 500 kg" },
+    { "key": "Rod Changer", "value": "Carousel · 6 × 9.1 m" }
+  ]
+}

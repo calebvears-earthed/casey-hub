@@ -1,0 +1,27 @@
+{
+  "AST-001": [
+    { "id": "SVC-C32-250", "interval": "250 h", "task": "Vibration + temp check · lube top-up", "last_completed": "2026-09-08", "next_due_hours": 4900, "current_hours": 4721, "status": "due_soon", "parts": [] },
+    { "id": "SVC-C32-1000", "interval": "1 000 h", "task": "Bearing regrease · coupling inspection · alignment check", "last_completed": "2026-07-14", "next_due_hours": 5000, "current_hours": 4721, "status": "on_track", "parts": ["SKF 6320 C3 grease pack", "Falk 1090T10 grid"] },
+    { "id": "SVC-C32-5000", "interval": "5 000 h", "task": "Full overhaul · winding megger · vibration signature", "last_completed": "2024-11-02", "next_due_hours": 5000, "current_hours": 4721, "status": "planning", "parts": ["Bearing set 6320/6316", "Insulation resistance report", "Alignment shim pack"] }
+  ],
+  "AST-002": [
+    { "id": "SVC-HYD-500", "interval": "500 h", "task": "Filter change · fluid sample · seal inspection", "last_completed": "2026-08-22", "next_due_hours": 8500, "current_hours": 8104, "status": "on_track", "parts": ["Parker G03-B 3µm element ×2", "Sample bottle kit"] },
+    { "id": "SVC-HYD-2000", "interval": "2 000 h", "task": "Full fluid change · reservoir clean · pump pressure test", "last_completed": "2026-04-11", "next_due_hours": 10000, "current_hours": 8104, "status": "on_track", "parts": ["Mobil DTE 25 · 480 L", "Reservoir gasket kit"] },
+    { "id": "SVC-HYD-INC-081", "interval": "incident", "task": "Investigate abnormal noise at load — report RPT-018", "last_completed": null, "next_due_hours": 8104, "current_hours": 8104, "status": "overdue", "parts": [] }
+  ],
+  "AST-003": [
+    { "id": "SVC-TF-6M", "interval": "6 months", "task": "Oil sample (DGA + moisture) · silica gel check · IR scan", "last_completed": "2026-05-18", "next_due_hours": null, "next_due_date": "2026-11-18", "status": "on_track", "parts": ["Oil sample bottle", "Silica gel breather pack"] },
+    { "id": "SVC-TF-12M", "interval": "12 months", "task": "Full electrical test · winding resistance · turns ratio · insulation", "last_completed": "2025-11-24", "next_due_hours": null, "next_due_date": "2026-11-24", "status": "due_soon", "parts": ["Megger MIT525 test lease", "Test lead kit"] },
+    { "id": "SVC-TF-3Y", "interval": "3 years", "task": "SF6 gas top-up · RMU internal inspection", "last_completed": "2024-11-22", "next_due_hours": null, "next_due_date": "2027-11-22", "status": "on_track", "parts": ["SF6 gas 8 kg cylinder"] }
+  ],
+  "AST-004": [
+    { "id": "SVC-793-500", "interval": "500 h", "task": "PM1 · oil + filter · walk-around · tyre pressures", "last_completed": "2026-09-01", "next_due_hours": 22950, "current_hours": 22450, "status": "on_track", "parts": ["Cat oil filter 1R-0716 ×2", "Cat fuel filter ×2", "Cat 15W-40 · 190 L"] },
+    { "id": "SVC-793-2000", "interval": "2 000 h", "task": "PM3 · injectors · turbos · brake wear · frame inspection", "last_completed": "2026-06-04", "next_due_hours": 24450, "current_hours": 22450, "status": "on_track", "parts": ["Injector kit 6-pack", "Turbo O-ring set", "Brake friction plate x6"] },
+    { "id": "SVC-793-TYRE-04", "interval": "condition", "task": "Position 4 tyre — chunking on outer shoulder, order replacement", "last_completed": null, "next_due_hours": 22450, "current_hours": 22450, "status": "due_soon", "parts": ["Michelin 40.00R57 XDR3 (position 4)"] }
+  ],
+  "AST-005": [
+    { "id": "SVC-DM45-250", "interval": "250 h", "task": "Compressor oil + filter · rotary head grease · rod handler grease", "last_completed": "2026-09-05", "next_due_hours": 34450, "current_hours": 34210, "status": "on_track", "parts": ["Sullair sump oil 20 L", "Grease cartridges ×6"] },
+    { "id": "SVC-DM45-1000", "interval": "1 000 h", "task": "Full hydraulic service · main compressor overhaul check · rotary head bearing sig", "last_completed": "2026-04-19", "next_due_hours": 35000, "current_hours": 34210, "status": "planning", "parts": ["Hydraulic filter kit", "Compressor inspection report", "Bearing analysis fee"] },
+    { "id": "SVC-DM45-INC-217", "interval": "incident", "task": "Rotary head vibration escalating — 3 reports flag same fault, service scheduled", "last_completed": null, "next_due_hours": 34210, "current_hours": 34210, "status": "overdue", "parts": ["Rotary head service kit", "Vibration analysis contractor booking"] }
+  ]
+}

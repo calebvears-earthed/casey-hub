@@ -6,6 +6,7 @@ const nav = [
   { href: "/", label: "Dashboard" },
   { href: "/assets", label: "Assets" },
   { href: "/shifts", label: "Shifts" },
+  { href: "/reports", label: "Reports" },
   { href: "/reports/new", label: "New Report" },
   { href: "/handover", label: "Handover" },
   { href: "/analytics", label: "Analytics" },
@@ -54,9 +55,11 @@ export default function Sidebar() {
       {/* Nav */}
       <nav className="flex-1 p-3 space-y-0.5">
         {nav.map((item) => {
-          const active =
-            pathname === item.href ||
-            (item.href !== "/" && pathname.startsWith(item.href));
+          // Prefer the most-specific matching nav item (e.g. "/reports/new" over "/reports")
+          const candidates = nav
+            .filter((n) => n.href === "/" ? pathname === "/" : pathname === n.href || pathname.startsWith(n.href + "/"))
+            .sort((a, b) => b.href.length - a.href.length);
+          const active = candidates[0]?.href === item.href;
           return (
             <Link
               key={item.href}

@@ -84,3 +84,35 @@
     letter-spacing: 0.24em;
   }
 }
+
+/* Print styles — for Download PDF flow (window.print) */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #14100E !important;
+    background-image: none !important;
+  }
+  aside, nav, .btn-primary, .btn-ghost, .print\:hidden {
+    display: none !important;
+  }
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .card {
+    background: #ffffff !important;
+    border: 1px solid #d8d2ca !important;
+    color: #14100E !important;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+  .card::before { display: none !important; }
+  .eyebrow { color: #D0261F !important; }
+  .text-paper, .text-paper\/90, .text-paper\/80, .text-paper\/70 { color: #14100E !important; }
+  .text-paper\/60, .text-paper\/50, .text-paper\/40 { color: #57504a !important; }
+  .text-red { color: #D0261F !important; }
+  .mono { color: #14100E !important; }
+  .divider-red { background: #D0261F !important; }
+  .pill { border: 1px solid #d8d2ca; }
+}

@@ -1,0 +1,10 @@
+[
+  { "id": "N-101", "asset_id": "AST-001", "author": "Casey Williams", "date": "2026-09-12", "pinned": true, "body": "Noise from NDE bearing when starting cold — no vibration yet but keep watching. Next service pull for signature." },
+  { "id": "N-102", "asset_id": "AST-001", "author": "Sam Chen", "date": "2026-09-10", "pinned": false, "body": "Alignment last done Jul — spec was 0.08 mm parallel · 0.05 mm angular. In range but toward upper limit." },
+  { "id": "N-201", "asset_id": "AST-002", "author": "Casey Williams", "date": "2026-09-11", "pinned": true, "body": "Fluid sample sent — awaiting result. If ISO code >20/18/15 we swap fluid on next window." },
+  { "id": "N-202", "asset_id": "AST-002", "author": "Ryan Porteous", "date": "2026-09-09", "pinned": false, "body": "Watch draw current on start — sitting 8% high. Could be pump wear, could be strainer. Check both." },
+  { "id": "N-301", "asset_id": "AST-003", "author": "Sam Chen", "date": "2026-09-06", "pinned": true, "body": "Warranty expires Nov 22 — DGA + IR test needs to be on file before then. Booked for 2026-11-15." },
+  { "id": "N-401", "asset_id": "AST-004", "author": "Ryan Porteous", "date": "2026-09-12", "pinned": true, "body": "Position 4 tyre chunking accelerating — do NOT run on soft haul road until swapped." },
+  { "id": "N-501", "asset_id": "AST-005", "author": "Casey Williams", "date": "2026-09-13", "pinned": true, "body": "Rotary head vibration is worse this shift. Escalated to Sam — vibration analysis contractor booked for Tues." },
+  { "id": "N-502", "asset_id": "AST-005", "author": "Sam Chen", "date": "2026-09-12", "pinned": false, "body": "Vibration signature attached to report RPT-020. Compressor side reading is clean, rotary head is source." }
+]
